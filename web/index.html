@@ -1,0 +1,461 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <link rel="icon" href="images/Favicon.gif" size="32x32" type="image/gif">
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <title>Quick Pass</title>
+        <!-- The script for ajax file upload -->
+        <script type="text/javascript" src="js/SimpleAjaxUploader.js">
+        </script>
+
+        <script type="text/javascript" src="js/jquery-3.2.0.min.js">
+        </script>
+        <script type="text/javascript" src="js/bootstrap.min.js">
+        </script>
+        <script type="text/javascript" src="js/fileDownload.js">
+        </script>
+        <script type="text/javascript" src="js/jquery-ui.min.js">
+        </script>
+        <!-- bootstrap css file-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <!-- css style file -->
+        <link rel="stylesheet" type="text/css" href="css/style.css">        
+    </head>
+    <body>
+
+
+
+
+        <span class="lightbox" id="lightbox"></span>
+        <center>
+            <!-- Quick Pass Logo -->
+            <img id="QuickPassLogo" src="images/QuickPassLogo.jpg" class="img-responsive" alt="Quick Pass Logo" height="165px" width="600"></br>
+
+
+            <!--Start of Download/Upload Radio Buttons -->
+            <div class="btn-group input-group" data-toggle="buttons">
+                <label class="btn btn-info" onclick="showDownload()">
+                    <input type="radio" name="Download" id="Download" autocomplete="off" > <span class="glyphicon glyphicon-download"></span> <big>Download</big>
+                </label>
+                <label class="btn btn-success" onclick="showUpload()">
+                    <input type="radio" name="Upload" id="Upload" autocomplete="off" ><span class="glyphicon glyphicon-upload"></span> <big>Upload</big>
+                </label>
+
+            </div> </br>
+            <!--End of Download/Upload Radio Buttons -->
+
+            <!-- Start of Upload Section -->
+            <div id="uploadSection">
+
+                <form action="uploadServlet" method="post" id="form">
+
+                    <!-- The successful message -->
+                    <div class="alert alert-success text-left" id="doneBox" >
+                        <span class="glyphicon glyphicon-info-sign input-lg"></span>
+                    </div> </br>
+                    <!-- file info alert -->
+                    <div class="alert alert-info text-left" id="sizeBox" >
+                        <span class="glyphicon glyphicon-info-sign input-lg"></span>
+                    </div> </br>
+                    <!-- wrong key alert -->
+                    <div class="alert alert-danger text-left" id="wrongKey" >
+                        <span class="glyphicon glyphicon-remove input-lg"></span>
+                    </div> </br>
+
+                    <!-- Start of Progress bar Div -->
+
+                    <div class="text-center offset-md-3  input-lg container" id="progressContainer">
+                        <div class="progress center-block">
+                            <div id = "progress" class="progress-bar progress-bar-striped active">
+                                <p id="progressPrecentage"> </p>
+                            </div>     
+                        </div>
+                    </div>
+                    </br></br>
+                    <!-- End of Progress bar Div -->
+
+                    <!-- Start of The DropZone Div -->
+                    <div class ="container-fluid" id="dropContainer">
+                        <div class ="upload-drop-zone" id="drop"><h1>Drag your file here</h1>
+                            <span><i class="glyphicon glyphicon-inbox"></i></span>
+
+                        </div> </br>
+
+                    </div>
+                    <!-- End of The DropZone Div -->
+
+                    <!-- Start of The Passcode text filed -->
+                    <div>
+                     
+                    <div class="input-group col-6 col-md-4 space">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="name1" type="text" class="form-control input-lg" name="name" placeholder="Enter Passcode" onfocus="lock()">
+                        <span class="loader" id="loader"></span> 
+                    </div> </br></div>
+                    <!-- End of The Passcode text filed -->
+
+                    <!-- Start of send me email  -->
+                    <div class="checkbox">
+                        <label style="font-size: 1.5em">
+                            <input type="checkbox" value="" id="emailCheck" onchange="toggleEmail()">
+                            <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                            Send a reminder to my email
+                        </label>
+                    </div>
+                    <div  id="emailContainer" class="input-group col-6 col-md-4 space">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input id="email" type="text" class="form-control input-lg" name="name" placeholder="Enter Your Email">                 
+                    </div> </br>
+                    <!-- End of send me email  -->
+
+                    <!-- Start of The Select/Upload Buttons -->
+                    <div class="btn-group input-group">
+
+                        <button type="button" id="uploadButton" class="btn btn-info"><span class="glyphicon glyphicon-file"></span> <big>Select File</big> </button>
+                        <button type="button" id="uploadnow" class="btn btn-success" value="send" onclick= " uploader.submit()" ><span class="glyphicon glyphicon-upload"></span> <big>Upload</big> </button>
+                        
+                    </div></br>
+                    <!-- End of The Select/Upload Buttons -->
+                </form>
+                <!-- End of Upload Section -->
+            </div>
+
+
+            <!-- Start of Download section-->
+            <div id="downloadSection">
+                <!-- Start of Error Box -->
+                <div class="alert alert-danger text-left" id="wrongDownload" >
+                    <span class="glyphicon glyphicon-remove input-lg"></span>
+                </div> </br>
+                <!-- End of error Box -->
+
+                <!-- Start of The Passcode text filed -->
+                <div class="input-group col-6 col-md-4 space">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input id="name2" type="text" class="form-control input-lg" name="name" placeholder="Enter Passcode" onfocus="lock()">                 
+                </div> </br>
+                <!-- End of The Passcode text filed -->
+
+                <!-- Download Button-->
+                <button type="button" class="btn btn-info" onclick="download()"><span class="glyphicon glyphicon-download"></span> <big>Download</big> </button>
+            </div>
+            <!-- End of Download section-->
+
+        </center>
+
+
+
+
+
+
+
+        <script type="text/javascript">
+            //Hiding the 3 boxes and disabling the send button with jquery
+            $("#doneBox").hide();
+            $("#sizeBox").hide();
+            $("#wrongKey").hide();
+            $("#progressContainer").hide();
+            $("#emailContainer").hide();
+            $("#loader").hide();
+            $("#uploadnow").prop('disabled', true);
+            /*Hiding the Download Section */
+            $("#downloadSection").hide();
+            $("#wrongDownload").hide();
+            /* ****************************************************
+             ********Here we handle the drag event*********
+             */
+            //handle the drag when it enter the page , 
+            //The drop box does not count as part of document
+            //Please Leave "event.preventDefault();" on document. without it
+            //problems will arise !
+            //but after it do what ever you want , change class of an element 
+            //show messages.......etc
+            document.addEventListener("dragover", function (event) {
+                event.preventDefault();
+                $("#lightbox").css("display", "block");
+            });
+            //Handle when the drag leave the document
+            //ether it entered the drop box or left the page.
+            //we undo all the changes we did on dragover.
+            document.addEventListener("dragleave", function (event) {
+                event.preventDefault();
+                $("#lightbox").css("display", "none");
+            });
+            //handle when the file dropped on the page
+            //same as dragleave , we cancel all changes
+            document.addEventListener("drop", function (event) {
+                event.preventDefault();
+                $("#lightbox").css("display", "none");
+            });
+            //Here when the drag enter  the drop box
+            $("#dropContainer").on("dragenter", function (event) {
+                event.preventDefault();
+                shakeIt();
+
+            });
+            //Here when drag hover over the dropbox
+            //This fuction will keep excuting as long
+            //as the mouse is still hovered
+            $("#drop").on("dragover", function (event) {
+                event.preventDefault();
+                $("#drop").addClass("dropzone-drag");
+
+
+            });
+            //Here when the drag leave the drop box
+            //so we cancel changes we made
+            $("#drop").on("dragleave", function (event) {
+                $("#drop").removeClass("dropzone-drag");
+
+
+            });
+            //Here when dropped in the  drop box
+            //we cancel the changes same as drag leave.
+            $("#drop").on("drop", function (event) {
+                $("#drop").removeClass("dropzone-drag");
+
+            });
+
+            //***************END OF THE DRAG EVENT HANDLE ******************
+
+
+            //in case if the key was correct and the send button was unlocked
+            //if the user want to change the key we lock the send button
+            //until he blur .This function is calle by the text box with
+            //the tag onfoucs=""
+            function lock() {
+                $("#uploadnow").prop('disabled', true);
+                $("#name1").removeClass("goodPass");
+                $("#name1").removeClass("badPass");
+            }
+            //when the textfield get blur we send the data with ajax
+            $("#name1").blur(function () {
+                $("#loader").show();
+                $("#name1").removeClass("goodPass");
+                $("#name1").removeClass("badPass");
+                //Get the value of the text box
+                var nnnn = $("#name1").val();
+                //Check if it's not empty
+                //if it's not empty we send the data
+                if (nnnn != "") {
+
+                    $.ajax({url: 'verify', type: 'POST', data: {name: nnnn}}).done(function (response) {
+                        //Here once done sending we handle the response .
+                        //Since the response will be a plain text we can just convert it to string
+                        var str = response.toString();
+                        //if the response from server is 1 that means it's ok
+                        if (str == 1) {
+                            //enable the send button
+                            $("#uploadnow").prop('disabled', false);
+                            //hide the wrong key box
+                            $("#wrongKey").hide();
+                            $("#loader").hide();
+                            $("#name1").addClass("goodPass");
+                        }
+                        //if the response is otherwise , means wrong
+                        else {
+                            //first we hide the wrong key so the animation will play in
+                            //case the box was already visable
+                            $("#wrongKey").hide();
+                            //clear the content so the message can be added
+                            $("#wrongKey").empty();
+                            //here we write the message
+                            $("#wrongKey").html(" <strong>The Passcode Has been Taken , Please Try another one .</strong><br /> ");
+                            //show the wrong box with 500 ms of animation
+                            $("#wrongKey").show(500);
+                            //Disable the send button
+                            $("#uploadnow").prop('disabled', true);
+                            $("#loader").hide();
+                            $("#name1").addClass("badPass");
+                        }
+                    })
+                }
+                //here means the text box was empty ( in future maybe we can do pattern matching ), we do not send
+                //just display a wrong box with this message
+                else {
+                    $("#wrongKey").hide();
+                    $("#wrongKey").empty();
+                    $("#wrongKey").html(" <strong>Please Enter Your Passcode .</strong><br /> ");
+                    $("#wrongKey").show(500);
+                    //Disable the send button
+                    $("#uploadnow").prop('disabled', true);
+                    $("#loader").hide();
+                    $("#name1").addClass("badPass");
+                }
+
+            });
+            //This object will point to the div that will be used as progress bar by the script 
+            progress = document.getElementById('progress') // the element we're using for a progress bar  
+            precentage = document.getElementById('progressPrecentage');
+            var uploader = new ss.SimpleUpload({
+
+                dropzone: 'drop', //the id for the div to be dropzone
+                button: 'uploadButton', // file upload button
+                url: 'NewFileUpload', // server side handler
+                name: 'filename', // upload parameter name        
+                autoSubmit: false, //so when the file get picked it won't send it immedtliy 
+                //form: 'form', //we link it to the form so the script will send all other data.
+                responseType: 'text/plain', // the type of the responce we expect to get from server
+                allowedExtensions: [], //empty means will allow to upload all kind of files
+                maxSize: 1048576, // kilobytes , max size for the file
+                // customHeaders: {'code': "Read This"},
+                debug: true,
+
+                //Do these things when the file get selected !
+                onChange: function (filename, extension, uploadBtn, fileSize, file) {
+                    if (fileSize > 1024 * 512) {
+                        this.clearQueue();
+                        $("#wrongKey").hide();
+                        $("#sizeBox").hide();
+                        $("#wrongKey").empty();
+                        $("#wrongKey").html(" <strong>The File is Too large . The Max Size is 100 MegaByte.</strong><br /> ");
+                        $("#wrongKey").show(500);
+                        $("#sizeBox").hide();
+                        $("#sizeBox").empty();
+                        return false;
+                    } else {
+                        //insert the message to the sizeBox
+                        $("#sizeBox").html(" <strong>The File has been selected correctly </strong><br /> "
+                                + "<strong>File Name : </strong>" + filename + " </br> <strong>File Size : </strong>" + fileSize);
+                        //Show with animation the size box
+                        $("#sizeBox").show(500);
+                        //Hide the done box in case if he is upload again .
+                        $("#doneBox").hide();
+                        //clear it's contents 
+                        $("#doneBox").empty();
+                        $("#progressContainer").hide();
+                    }
+                },
+                //Do these before sending the file
+                onSubmit: function (filename, extension, uploadBtn, fileSize) {
+
+                    if (fileSize > 1024 * 512) {
+                        this.clearQueue();
+                        $("#wrongKey").hide();
+                        $("#sizeBox").hide();
+                        $("#wrongKey").empty();
+                        $("#wrongKey").html(" <strong>The File is Too large . The Max Size is 100 MegaByte.</strong><br /> ");
+                        $("#wrongKey").show(500);
+                        $("#sizeBox").hide();
+                        $("#sizeBox").empty();
+                        return false;
+                    } else {
+                        var email = "";
+                        $("#progressContainer").show();
+                        //pass the object which points to the div that will act as progress bar
+                        this.setProgressBar(progress); // designate as progress bar
+                        //pass the object that will display the precentage of upload
+                        //here we are using the same object 
+                        //this.setPctBox(precentage);
+                        //disable the send button.
+                        $("#uploadnow").prop('disabled', true);
+                        //hide the wrong key message.
+                        $("#wrongKey").hide();
+                        if ($("#emailCheck").is(":checked")) {
+                            email = $("#email").val();
+                        }
+                        this.setOptions({customHeaders: {'code': $("#name1").val(), 'size': fileSize, 'email': email}});
+                    }
+                },
+                //Do these when done sending and handle the response
+                onDone: function (filename, status, statusText, response, uploadBtn, fileSize) {
+                    //hide the size box that displays the file info
+                    $("#sizeBox").hide();
+                    //clear size box cotents
+                    $("#sizeBox").empty();
+                    //will display the done message once finished .                         
+
+                    if (response.toString() == "0") {
+                        $("#doneBox").html(" <strong>The File has been uploaded Successfully .</strong><br /> ");
+                    } else if (response.toString() == "1") {
+                        $("#doneBox").html("ERROR ,The Code has already been taken ");
+                    } else if (response.toString() == "2") {
+                        $("#doneBox").html("ERROR , The File Size is Larger Than the allowed Size !");
+                    } else if (response.toString() == "3") {
+                        $("#doneBox").html("ERROR , Something Went Wrong !");
+                    }
+
+                    //Show the done message
+                    $("#doneBox").show(500);
+
+                },
+                onError: function (filename, errorType, status, statusText, response, uploadBtn, fileSize) {
+                    //hide the size box that displays the file info
+                    $("#sizeBox").hide();
+                    //clear size box cotents
+                    $("#sizeBox").empty();
+                    if (response.toString() == "1") {
+                        alert("ERROR ,The Code has already been taken ");
+                    } else if (response.toString() == "2") {
+                        alert("ERROR , The File Size is Larger Than the allowed Size !");
+                    } else if (response.toString() == "3") {
+                        alert("ERROR , Something Went Wrong !");
+                    }
+
+                },
+                onProgress: function (pct) {
+                    $("#progressPrecentage").html(pct + "%");
+                }
+            });
+            function download() {
+
+                var code = $("#name2").val();
+                $.ajax({url: 'getURL', type: 'GET', data: {code: code}}).done(function (response) {
+                    //Here once done sending we handle the response .
+                    //Since the response will be a plain text we can just convert it to string
+                    var res = response.toString();
+
+                    if (res == 1) {
+                        $("#wrongDownload").empty();
+                        $("#wrongDownload").html("The Passcode is invalid");
+                        $("#wrongDownload").show();
+
+                    } else {
+                        $("#wrongDownload").hide();
+                        downloadFile("FileServlet/" + res);
+                    }
+                })
+            }
+
+            /* The function called by the radio button to show and hide the
+             Upload or Download Screens with sliding motion
+             */
+            function showDownload() {
+
+                $("#uploadSection").slideUp(500);
+                $("#downloadSection").show();
+
+            }
+            function showUpload() {
+
+                $("#uploadSection").slideDown(500);
+                $("#downloadSection").hide();
+            }
+
+            function shakeIt() {
+
+                for (var i = 0; i < 5; i++) {
+                    $("#drop").effect("shake", {direction: "left", distance: 3, times: 1}, 50);
+                    $("#drop").effect("shake", {direction: "up", distance: 3, times: 1}, 50);
+                    $("#drop").effect("shake", {direction: "right", distance: 3, times: 1}, 50);
+                    $("#drop").effect("shake", {direction: "down", distance: 3, times: 1}, 50);
+                }
+
+            }
+            function toggleEmail() {
+                if ($("#emailCheck").is(":checked")) {
+
+                    $("#emailContainer").show();
+                } else {
+                    $("#emailContainer").hide();
+                }
+            }
+            /*Detecting if the user is on mobile */
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+                $("#dropContainer").hide();
+            }
+
+        </script>
+    </body>
+</html>

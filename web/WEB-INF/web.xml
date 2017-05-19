@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>FileUploadUsingServlet</display-name>
+    <servlet>
+        <servlet-name>verify</servlet-name>
+        <servlet-class>verify</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FileServlet</servlet-name>
+        <servlet-class>FileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>getURL</servlet-name>
+        <servlet-class>getURL</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>NewFileUpload</servlet-name>
+        <servlet-class>NewFileUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>verify</servlet-name>
+        <url-pattern>/verify</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/FileServlet/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getURL</servlet-name>
+        <url-pattern>/getURL</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>NewFileUpload</servlet-name>
+        <url-pattern>/NewFileUpload</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+    <listener>
+        <listener-class>QuartzListener</listener-class>
+    </listener>
+</web-app>

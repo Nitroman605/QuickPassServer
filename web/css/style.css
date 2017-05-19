@@ -1,0 +1,189 @@
+body {
+margin: 2%;
+ 
+ 
+}
+ 
+#QuickPassLogo{
+    padding: 2%;
+     
+     
+}
+ 
+#sizeBox{
+   
+  width: 75%;
+}
+ 
+#doneBox{
+  width: 75% 
+}
+ 
+#wrongKey {
+  width: 75%;
+}
+#wrongDownload{
+    width: 75%;
+}
+ 
+#progressStyle{
+   
+  margin-bottom:20px;
+  align-content: left;
+  float:left;
+   
+   
+}
+ 
+#drop{
+     
+    
+}
+ 
+.upload-drop-zone {
+  position: relative;
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 50px;
+  text-align: center;
+  height:200px;
+  width: 75%;
+  margin: 10px;
+  z-index: -1;
+  background-color: white;
+}
+.dropzone-drag{
+    border-color: darkgreen;
+    display:block;
+}
+.space{
+    position: relative;
+    max-width: 60%;
+}
+.lightbox {
+	/** Default lightbox to hidden */
+        display:none;
+	
+        pointer-events: none;
+	/** Position and style */
+	position: fixed;
+	z-index: 50;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	bottom: 0;
+	left: 0;
+	background: rgba(208,215,232,0.8);
+}
+#uploadSection{
+    
+}
+.drag{
+     
+      
+}
+ 
+.drag2{
+    
+ 
+}
+ 
+div.ui-state-hover{
+        -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+        transform: scale(1.3);
+    
+ 
+}
+ 
+.glyphicon.glyphicon-inbox{
+    font-size: 75px;
+}
+ 
+ 
+/*check box style*/
+.checkbox label:after, 
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+ 
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+}
+ 
+.radio .cr {
+    border-radius: 50%;
+}
+ 
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+ 
+.radio .cr .cr-icon {
+    margin-left: 0.04em;
+}
+ 
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+ 
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+ 
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+ 
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5;
+}
+.loader {
+    
+    position: absolute;
+    flow:right;
+    margin-left: 5px;
+    border: 8px solid #bdccd4; /* Light grey */
+    border-top: 8px solid #fcee21; /* Yellow */
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    animation: spin 1s linear infinite;
+    
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.goodPass{    
+   background-color: rgba(13, 236, 24,0.5);
+}
+
+.badPass{
+    background-color: #f2dede;
+}

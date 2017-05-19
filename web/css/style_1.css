@@ -1,0 +1,64 @@
+body {
+margin: 2%;
+}
+
+#QuickPassLogo{
+    padding: 2%;
+}
+
+#sizeBox{
+  
+  width: 75%;
+}
+
+#wrongKey{
+  width: 75%;
+}
+
+#progress{
+  
+}
+
+#drop{
+    
+   
+}
+
+.upload-drop-zone {
+  color: #ccc;
+  border-style: dashed;
+  border-color: #ccc;
+  line-height: 50px;
+  text-align: center;
+  height:200px;
+  width: 75%;   
+}
+
+.drag{
+    background-color: red;
+}
+
+.drag2{
+    background-color: blue;
+}
+
+div.ui-state-hover{
+    background-color: red;
+}
+
+
+
+/*key text field*/
+#name1{
+    
+}
+
+#uploadButton{
+    
+}
+
+#uploadnow{
+    
+}
+
+
