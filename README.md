@@ -4,7 +4,7 @@
 <hr/>
 <br/>
 
-# This Project was created by the Quick Pass Group for Software Engineering course lectured by Dr.Abid Jameel .
+# This Project was created by the Quick Pass Group for Software Engineering course lectured by Dr.Mohammad Abid Jameel Umm Al-qura University , Computer Science Department .
 
 <hr/>
 
