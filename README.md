@@ -10,3 +10,9 @@
 
 This is the Server Portion of the Quick Pass . Please be sure to setup the Database according to the ERD in our Report and Change \n
 Connction information (i.e Username and Password ) for your Database and Your Email Service Provider .
+
+<br/>
+<hr/>
+<br/>
+
+#You can get the Quick Pass Android Application here : https://github.com/Nitroman605/QuickPassApp
